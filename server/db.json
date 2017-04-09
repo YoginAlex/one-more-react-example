@@ -1,0 +1,14 @@
+{
+    "departments": [
+        {
+            "name": "First"
+        }
+    ],
+    "employees": [
+        {
+            "firstName": "Name",
+            "lastName": "Last Name",
+            "departmentId": 1
+        }
+    ]
+}

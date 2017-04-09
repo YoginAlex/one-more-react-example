@@ -3,13 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "compose": "^0.1.2",
+    "json-server": "^0.9.6",
     "material-ui": "^0.17.2",
+    "prop-types": "^15.5.6",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
-    "react-redux": "^5.0.3",
+    "react-redux": "^4.4.5",
+    "react-router": "^3.0.2",
+    "react-router-redux": "^4.0.8",
     "react-tap-event-plugin": "^2.0.1",
     "recompose": "^0.23.0",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-connect": "^2.4.0",
+    "redux-thunk": "^2.2.0",
+    "superagent": "^3.5.2"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.1",
@@ -25,9 +33,13 @@
     "redux-devtools": "^3.3.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "build-css": "node-sass src/ -o src/",
+    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p json-server watch-css start-js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "json-server": "node ./server/server"
   }
 }

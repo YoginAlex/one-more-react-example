@@ -49,6 +49,7 @@ module.exports = {
         "__ROOT_FOLDER__": true,
         "configuration": true,
         "socket": true,
-        "document": true
+        "document": true,
+        "window": true
     }
 };
