@@ -10,8 +10,9 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
 
-class Departments extends Component {
+class Employees extends Component {
     static propTypes = {
+        employees: PropTypes.array,
         departments: PropTypes.array,
         pushState: PropTypes.func,
 
@@ -19,15 +20,19 @@ class Departments extends Component {
     }
 
     render() {
-        const { departments, children } = this.props;
+        const { employees, departments, children } = this.props;
 
-        const items = departments.map(dep => (
-            <MenuItem key={dep.id}>
-                <Link to={`/departments/${dep.id}`}>
-                    {dep.name}
-                </Link>
-            </MenuItem>
-        ));
+        const items = employees.map((employee) => {
+            const department = departments.find(dep => dep.id === employee.departmentId);
+
+            return (
+                <MenuItem key={employee.id}>
+                    <Link to={`/employees/${employee.id}`}>
+                        {employee.firstName} {employee.lastName} - {department && department.name}
+                    </Link>
+                </MenuItem>
+            );
+        });
 
         return (
             <div>
@@ -39,7 +44,7 @@ class Departments extends Component {
                             primary
                             label="New"
                             onTouchTap={() => {
-                                this.props.pushState('/departments/new');
+                            this.props.pushState('/employees/new');
                             }}
                         />
 
@@ -54,6 +59,7 @@ class Departments extends Component {
 const decorate = compose(
     connect(
         state => ({
+            employees: state.employees.items,
             departments: state.departments.items
         }),
         dispatch => bindActionCreators({
@@ -62,4 +68,4 @@ const decorate = compose(
     )
 );
 
-export default decorate(Departments);
+export default decorate(Employees);

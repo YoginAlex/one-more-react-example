@@ -13,6 +13,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
 import { getDepartments } from './store/departments';
+import { getEmployees } from './store/employees';
 
 import './App.css';
 
@@ -21,6 +22,7 @@ injectTapEventPlugin();
 class App extends Component {
     static propTypes = {
         getDepartments: PropTypes.func.isRequired,
+        getEmployees: PropTypes.func.isRequired,
 
         children: PropTypes.node
     }
@@ -29,6 +31,7 @@ class App extends Component {
         super(props);
 
         this.props.getDepartments();
+        this.props.getEmployees();
     }
 
     render() {
@@ -57,6 +60,11 @@ class App extends Component {
                                 Departments
                             </Link>
                         </MenuItem>
+                        <MenuItem>
+                            <Link to="/employees" activeClassName="route--active">
+                                Employees
+                            </Link>
+                        </MenuItem>
                     </Drawer>
                 </div>
             </MuiThemeProvider>
@@ -68,7 +76,7 @@ const decorate = compose(
     connect(
         null,
         dispatch => bindActionCreators({
-            getDepartments
+            getDepartments, getEmployees
         }, dispatch)
     )
 );
